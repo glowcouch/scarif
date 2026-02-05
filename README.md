@@ -20,7 +20,12 @@ Or use it with Typst CLI:
 typst init @preview/scarif:0.1.0
 ```
 
-## Features
+**NOTICE:** Scarif requires the following fonts to be installed:
+
+- [Buenard](https://fonts.google.com/specimen/Buenard)
+- [Cascadia Mono](https://github.com/microsoft/cascadia-code)
+- [HK Grotesk](https://hanken.co/products/hk-grotesk)
+
 
 ### Title
 
