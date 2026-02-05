@@ -50,7 +50,11 @@ To automaticly apply Scarifs show rules to `raw()` and `image()` enable them in 
 Create stunning title sections with optional subtitles and a fill:
 
 ```typ
-#scarif.title("This is a title", sub-title: "This is a sub title", fill: scarif.gradients.ruby)
+#scarif.title(
+  "This is a title",
+  sub-title: "This is a sub title",
+  fill: scarif.gradients.ruby,
+)
 ```
 
 ![Title example](examples/title.svg)
