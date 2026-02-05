@@ -2,4 +2,4 @@
 
 #set page(width: 400pt, height: auto, margin: 15pt)
 
-#s.image("/template/beach.jpg")
+#s.image(read("../template/beach.jpg", encoding: none))

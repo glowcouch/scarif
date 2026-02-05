@@ -22,5 +22,4 @@ The #s.raw("scarif.raw()") function displays code blocks with elegant styling. I
 
 The #s.raw("scarif.image()") function enhances images with polished styling. It applies rounded corners and soft shadows while optimizing width for maximum impact:
 
-// The image must be passed as an absolute path
-#s.image("/beach.jpg", height: 290pt)
+#s.image(read("beach.jpg", encoding: none), height: 290pt)

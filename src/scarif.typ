@@ -174,15 +174,9 @@
 /// A raster or vector graphic.
 /// -> content
 #let image(
-  /// A path to an image file or raw bytes making up an image in one of the
-  /// supported formats. Can also be a image element.
+  /// Raw bytes making up an image in one of the supported formats.
   ///
-  /// If a image element is supplied, its fields will override any fields set
-  /// in this function.
-  /// 
-  /// The path to the image must be absolute.
-  ///
-  /// -> str | bytes | content
+  /// -> bytes
   source,
   /// The image's format.
   /// -> auto | str | dictionary

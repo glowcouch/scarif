@@ -135,12 +135,12 @@ Display code with elegant styling. You can either pass in the native arguments f
 
 ### Images
 
-Enhance images with polished styling. You can either pass in the native arguments from `image()` or a image element.
+Enhance images with polished styling.
 
-**Notice:** When passing in a image soruce path it must be absolute to the project root.
+**NOTICE:** Currently the image can only be passed as `bytes`. This will change as soon as Typst 0.15 is released.
 
 ```typ
-#scarif.image("/template/beach.jpg")
+#scarif.image(read("beach.jpg", encoding: none))
 ```
 
 ![Image example](examples/image.svg)
@@ -151,15 +151,9 @@ Enhance images with polished styling. You can either pass in the native argument
 /// A raster or vector graphic.
 /// -> content
 #let image(
-  /// A path to an image file or raw bytes making up an image in one of the
-  /// supported formats. Can also be a image element.
+  /// Raw bytes making up an image in one of the supported formats.
   ///
-  /// If a image element is supplied, its fields will override any fields set
-  /// in this function.
-  /// 
-  /// The path to the image must be absolute.
-  ///
-  /// -> str | bytes | content
+  /// -> bytes
   source,
   /// The image's format.
   /// -> auto | str | dictionary
