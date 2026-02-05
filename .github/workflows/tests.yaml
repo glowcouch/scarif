@@ -1,0 +1,38 @@
+name: Tests
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+env: 
+  CARGO_TERM_COLOR: always
+
+jobs:
+  typst_0_14_2:
+    name: Typst 0.14.2
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v4
+      - name: Install tytanic
+        uses: baptiste0928/cargo-install@v3.0.0
+        with:
+          crate: tytanic
+          git: https://github.com/tingerrr/tytanic.git
+          tag: v0.3.3
+      - name: Run Tests
+        run: ./scripts/test.py
+      - name: Archive artifacts
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: artifacts-0.14.2
+          path: |
+            tests/**/diff/*.png
+            tests/**/out/*.png
+            tests/**/ref/*.png
+          retention-days: 14
