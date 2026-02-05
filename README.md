@@ -2,6 +2,8 @@
 
 A beautifully designed [Typst](https://typst.app/) template that brings tropical elegance to your documents. Drawing design inspiration from the official Typst documentation website, Scarif combines sophisticated typography with curated color gradients to create stunning layouts.
 
+![Initial example](thumbnail.png)
+
 ## Installation
 
 Add the package to your Typst document:
