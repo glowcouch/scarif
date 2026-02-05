@@ -26,13 +26,31 @@ typst init @preview/scarif:0.1.0
 - [Cascadia Mono](https://github.com/microsoft/cascadia-code)
 - [HK Grotesk](https://hanken.co/products/hk-grotesk)
 
+## Documentation
+
+### Template
+
+Apply Scarifs basic show rules with `template()`:
+
+```typ
+#show scarif.template
+```
+
+To automaticly apply Scarifs show rules to `raw()` and `image()` enable them in the `template()` function:
+
+```typ
+#show: scarif.template.with(
+  raw-show-rule: true,
+  image-show-rule: true,
+)
+```
 
 ### Title
 
 Create stunning title sections with optional subtitles and a fill:
 
 ```typ
-#s.title("This is a title", sub-title: "This is a sub title", fill: s.gradients.ruby)
+#scarif.title("This is a title", sub-title: "This is a sub title", fill: scarif.gradients.ruby)
 ```
 
 ![Title example](examples/title.svg)
@@ -57,10 +75,10 @@ Create stunning title sections with optional subtitles and a fill:
 
 ### Raw
 
-Display code with elegant styling. You can either pass in the native arguments from `raw` or a raw element.
+Display code with elegant styling. You can either pass in the native arguments from `raw()` or a raw element.
 
 ```typ
-#s.raw(```typ
+#scarif.raw(```typ
 #let add(a, b) = a + b
 ```)
 ```
@@ -113,12 +131,12 @@ Display code with elegant styling. You can either pass in the native arguments f
 
 ### Images
 
-Enhance images with polished styling. You can either pass in the native arguments from `image` or a image element.
+Enhance images with polished styling. You can either pass in the native arguments from `image()` or a image element.
 
-Notice: When passing in a image soruce path it must be absolute to the project root.
+**Notice:** When passing in a image soruce path it must be absolute to the project root.
 
 ```typ
-#s.image("/template/beach.jpg")
+#scarif.image("/template/beach.jpg")
 ```
 
 ![Image example](examples/image.svg)
