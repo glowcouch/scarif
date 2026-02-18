@@ -43,6 +43,20 @@
     }
   })
 }
+
+/// Measures the brightness of a fill color and returns the correct text color
+#let text-color(fill) = {
+  let luma-color = if type(fill) == color {
+    luma(fill)
+  } else {
+    luma(fill.sample(50%))
+  }
+
+  let brightness = luma-color.components().at(0)
+
+  if brightness > 70% { black } else { white }
+}
+
 /// A document title
 /// -> content
 #let title(
@@ -58,16 +72,6 @@
 ) = {
   set document(title: title)
 
-  let luma-color = if type(fill) == color {
-    luma(fill)
-  } else {
-    luma(fill.sample(50%))
-  }
-
-  let brightness = luma-color.components().at(0)
-
-  let text-color = if brightness > 70% { black } else { white }
-
   shadow()[
     #block(width: 100%, inset: 12pt, radius: default-radius, fill: fill)[
       #set par(spacing: 10pt)
@@ -76,7 +80,7 @@
       #h(12pt)
 
       #fit-to-width(max-text-size: default-title-size)[
-        #text(font: default-title-font, weight: "bold", fill: text-color, title)
+        #text(font: default-title-font, weight: "bold", fill: text-color(fill), title)
       ]
 
       #if sub-title != none [
@@ -84,7 +88,7 @@
           font: default-font,
           size: default-sub-title-size,
           weight: "semibold",
-          fill: text-color,
+          fill: text-color(fill),
           sub-title,
         )
       ]
@@ -240,13 +244,53 @@
 /// A "section" with an outline and shadow.
 /// -> content
 #let section(
-  /// the content of the section
+  /// The content of the section.
   /// -> content
   content,
-) = {
-  shadow()[
-    #block(radius: default-radius, inset: 12pt, fill: white, clip: true, content)
-  ]
+  /// The title above the section.
+  /// -> content
+  title-content: none,
+  /// The title's fill.
+  /// color | gradient
+  title-fill: gradients.lagoon,
+) = context {
+  let content-radius = if title-content != none {
+    (top: 0pt, rest: default-radius)
+  } else { default-radius }
+
+  let content-block = block(
+    radius: content-radius,
+    inset: 12pt,
+    fill: white,
+    clip: true,
+    width: 100%,
+    content,
+  )
+
+  let title-block = if title-content != none {
+    block(
+      radius: (top: default-radius, rest: 0pt),
+      inset: (top: 18pt, rest: 12pt),
+      fill: title-fill,
+      width: 100%,
+      [
+        #text(
+          font: default-title-font,
+          weight: "bold",
+          fill: text-color(title-fill),
+          title-content,
+          size: default-sub-title-size,
+        )
+      ],
+    )
+  } else { none }
+
+  shadow(
+    stack(
+      title-block,
+      content-block,
+    ),
+  )
 }
 
 #let template(
