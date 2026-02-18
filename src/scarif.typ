@@ -3,7 +3,7 @@
 #import "gradients.typ"
 
 // Global variables
-#let default-font = "HK Grotesk"
+#let default-font = "Hanken Grotesk"
 #let default-text-size = 12pt
 #let default-title-font = "Buenard"
 #let default-title-size = 24pt
