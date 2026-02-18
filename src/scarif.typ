@@ -237,6 +237,18 @@
   ]
 }
 
+/// A "section" with an outline and shadow.
+/// -> content
+#let section(
+  /// the content of the section
+  /// -> content
+  content,
+) = {
+  shadow()[
+    #block(radius: default-radius, inset: 12pt, fill: white, clip: true, content)
+  ]
+}
+
 #let template(
   doc,
   raw-show-rule: false,
