@@ -72,6 +72,9 @@
     #block(width: 100%, inset: 12pt, radius: default-radius, fill: fill)[
       #set par(spacing: 10pt)
 
+      // for some reason the inset doesn't seem to apply to the top of the block
+      #h(12pt)
+
       #fit-to-width(max-text-size: default-title-size)[
         #text(font: default-title-font, weight: "bold", fill: text-color, title)
       ]
@@ -246,8 +249,7 @@
 
   // Exlcude scarif.raw raws to prevent recursion
   show std.raw: it => if (
-    raw-show-rule
-      and not (it.has("label") and it.label == <scarif-disable-raw-show-rule>)
+    raw-show-rule and not (it.has("label") and it.label == <scarif-disable-raw-show-rule>)
   ) {
     raw(it)
   } else {
@@ -260,8 +262,7 @@
       and not (
         it.has("label")
           and (
-            it.label == <scarif-disable-image-show-rule>
-              or it.label == <shadowed-shadow>
+            it.label == <scarif-disable-image-show-rule> or it.label == <shadowed-shadow>
           )
       )
   ) {
