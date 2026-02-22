@@ -303,6 +303,28 @@
   set heading(numbering: "1.1")
   set math.equation(numbering: i => [(#i)], supplement: [])
 
+  // show references to headings as "Section 1 (<name>)"
+  show ref: it => {
+    // get element the reference is pointing to
+    let el = it.element
+
+    // only apply to headings
+    if el != none and el.func() == heading {
+      let number = counter(heading).at(el.location()).join(".")
+
+      // make link to heading
+      link(it.target, [Section #str(number) (#el.body)])
+    } else {
+      it
+    }
+  }
+
+  // make links and citations blue and underlined
+  show link: it => { underline(it) }
+  show link: set text(blue)
+  show ref: it => { underline(it) }
+  show ref: set text(blue)
+
   // Exlcude scarif.raw raws to prevent recursion
   show std.raw: it => if (
     raw-show-rule and not (it.has("label") and it.label == <scarif-disable-raw-show-rule>)
